@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
+import Error from "../Pages/ErrorPage/Error";
 import Home from "../Pages/Home/Home";
 import Singin from "../Pages/Login/Singin";
 import Singup from "../Pages/Login/Singup";
@@ -23,4 +24,8 @@ export const route = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '*',
+    element:<Error></Error>
+  }
 ]);
