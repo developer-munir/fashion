@@ -1,7 +1,24 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Singin = () => {
+  const { singinUser } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    singinUser(email,password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch(error => {
+        console.log(error);
+    })
+  }
   return (
     <div className="hero min-h-screen ">
       <div className="hero-content w-full md:w-1/2 flex flex-col">
@@ -9,7 +26,7 @@ const Singin = () => {
           <h1 className="uppercase text-2xl">SingIn</h1>
         </div>
         <div className="w-full shadow-2xl bg-base-100">
-          <form className="card-body">
+          <form className="card-body" onSubmit={handleLogin}>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>

@@ -2,3 +2,8 @@
     display: grid;
     grid-template-columns: 400px 1fr;
 }
+@media screen and (max-width: 640px) { 
+    .layout-home{
+        grid-template-columns: 1fr;
+    }
+}

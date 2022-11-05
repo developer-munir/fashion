@@ -1,16 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user)
+  const handleLogout = () => {
+    logOut();
+  }
   const navlinks = (
     <>
-      <li>
-        <Link to='/'>Home</Link>
-      </li>
-      <li>
-        <Link to='/singin'>Singin</Link>
-      </li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+      {user?.uid ? (
+        <>
+          <li>
+            <Link onClick={handleLogout}>Logout</Link>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/singin">Singin</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -51,9 +68,17 @@ const Navbar = () => {
           placeholder="Search..."
           className="input bg-base-300 "
         />
-        <Link className="ml-5">
-        <FaUserCircle size={40}></FaUserCircle>
-        </Link>
+        {user?.photoURL ? (
+          <>
+           <img src={user.photoURL} alt="" />
+          </>
+        ) : (
+          <>
+            <Link className="ml-5">
+              <FaUserCircle size={40}></FaUserCircle>
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
