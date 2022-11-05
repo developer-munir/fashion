@@ -9,10 +9,10 @@ const Main = () => {
         <div>
           <Navbar></Navbar>
         </div>
-        <div className="max-w-screen-xl mx-auto">
+        <div className="max-w-screen-xl mx-auto bg-base-300">
           <Outlet></Outlet>
         </div>
-        <div>
+        <div className="max-w-screen-xl mx-auto bg-base-300">
           <Footer></Footer>
         </div>
       </div>
